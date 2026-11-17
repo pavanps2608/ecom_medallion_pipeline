@@ -24,18 +24,19 @@ Unity Catalog Volumes (raw JSON)
   
 Repository structure
 
-File	Layer	Purpose
-01_source_to_bronze.py	Bronze	Reads raw JSON from volumes, adds metadata, appends to Delta tables
-02_bronze_to_silver.py	Silver	Data quality checks, rejects, product dedup, order enrichment
-03_silver_to_gold.py	Gold	Builds daily product sales and category sales aggregates
+File	                       Layer	                          Purpose
+01_source_to_bronze.py	     Bronze	                          Reads raw JSON from volumes, adds metadata, appends to Delta tables
+02_bronze_to_silver.py	     Silver	                          Data quality checks, rejects, product dedup, order enrichment
+03_silver_to_gold.py	       Gold	                            Builds daily product sales and category sales aggregates
 data/orders.json	Sample source	Sample orders data
 data/products.json	Sample source	Sample product master data (includes intentionally bad records)
 
 Unity Catalog setup
-Object	Name
-Catalog	ecom_medallion_arc_pipeline
-Schemas	bronze, silver, gold, data_layer
-Volumes	ecom_medallion_arc_pipeline.data_layer.source_1 (orders), ecom_medallion_arc_pipeline.data_layer.source_2 (products)
+Object	             Name
+Catalog	             ecom_medallion_arc_pipeline
+Schemas	             bronze, silver, gold, data_layer
+Volumes	             ecom_medallion_arc_pipeline.data_layer.source_1 (orders).
+                     ecom_medallion_arc_pipeline.data_layer.source_2 (products)
 
 Raw files are stored under a Hive-style partition folder, e.g. /Volumes/ecom_medallion_arc_pipeline/data_layer/source_1/load_date=2026-04-03/.
 
